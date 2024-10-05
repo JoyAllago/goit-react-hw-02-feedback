@@ -1,8 +1,9 @@
-import { Component } from 'react';
-import { Statistics } from './Statistics/Statistics';
-import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
-import { Section } from './Section/Section';
+// Separate named imports, this makes the code more readable
+import React, { Component } from 'react';
 import { Notification } from './Notification/Notification';
+import { Statistics } from './Statistics/Statistics';
+import { FeedbackOptions } from './FeedbackOPtions/FeedbackOptions';
+import { Section } from './Section/Section';
 
 export class App extends Component {
   state = {
@@ -19,6 +20,7 @@ export class App extends Component {
   countPositiveFeedbackPercentage = () => {
     const { good } = this.state;
     const total = this.countTotalFeedback();
+
     return total > 0 ? Math.round((good / total) * 100) : 0;
   };
 
@@ -37,7 +39,7 @@ export class App extends Component {
 
     return (
       <div>
-        <Section title="Please leave feedback">
+        <Section title="Please leave a feedback">
           <FeedbackOptions
             options={options}
             onLeaveFeedback={this.handleClick}
