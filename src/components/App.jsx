@@ -1,9 +1,8 @@
-// Separate named imports, this makes the code more readable
-import React, { Component } from 'react';
-import { Notification } from './Notification/Notification';
+import { Component } from 'react';
 import { Statistics } from './Statistics/Statistics';
-import { FeedbackOptions } from './FeedbackOPtions/FeedbackOptions';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Section } from './Section/Section';
+import { Notification } from './Notification/Notification';
 
 export class App extends Component {
   state = {
@@ -12,18 +11,22 @@ export class App extends Component {
     bad: 0,
   };
 
+  // display the total number of collected reviews from all categories
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
     return good + neutral + bad;
   };
 
+  // display the percentage of positive reviews
   countPositiveFeedbackPercentage = () => {
     const { good } = this.state;
     const total = this.countTotalFeedback();
 
+    // if total is greater than 0, return the positive percentage, else 0
     return total > 0 ? Math.round((good / total) * 100) : 0;
   };
 
+  // update the state when a button is clicked
   handleClick = type => {
     this.setState(prevState => ({
       ...prevState,
